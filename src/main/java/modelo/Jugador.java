@@ -6,9 +6,9 @@ import java.util.Date;
 
 public class Jugador {
     private Long id;
-    private  String nombre;
+    private final String nombre;
     private  int puntos;
-    private Date fechaDeRegistro;
+    private final Date fechaDeRegistro;
 
     public Jugador(String nombre){
         this.fechaDeRegistro = new Date();
@@ -22,17 +22,10 @@ public class Jugador {
         this.id = id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public Date getFechaDeRegistro() {
         return fechaDeRegistro;
     }
 
-    public void setFechaDeRegistro(Date fechaDeRegistro) {
-        this.fechaDeRegistro = fechaDeRegistro;
-    }
 
     public int getPuntos() {
         return puntos;

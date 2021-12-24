@@ -1,4 +1,4 @@
-package main;
+package ejemplo;
 
 import modelo.*;
 import repositorio.HistoricoJugadores;
@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import static util.InyectorPreguntas.ingresarPreguntas;
 
-public class EjemploConcurso {
+public class EjemploTrivia {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
        boolean finalizar=false;

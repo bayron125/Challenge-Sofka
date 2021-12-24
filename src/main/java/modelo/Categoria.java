@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Categoria {
-    private int nivel;
-    private static int ultimonivel;
-    private List<Pregunta>preguntas;
+    private final List<Pregunta>preguntas;
 
     public Categoria(){
         this.preguntas = new ArrayList<>();

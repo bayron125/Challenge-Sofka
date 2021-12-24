@@ -45,7 +45,7 @@ public class HistoricoJugadores implements IRepisotorio<Jugador> {
     }
 
     @Override
-    public void agregar(Jugador jugador) throws SQLException {
+    public void agregar(Jugador jugador) {
         String sql;
         if (jugador.getId() != null && jugador.getId() > 0) {
             sql = "UPDATE jugadores SET nombre=?, precio=? WHERE id=?";

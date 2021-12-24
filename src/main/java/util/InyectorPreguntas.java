@@ -8,12 +8,13 @@ import repositorio.BancoDePreguntas;
 import java.util.Scanner;
 
 public class InyectorPreguntas {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static BancoDePreguntas ingresarPreguntas (){
         int cantidadPreguntas=0;
         BancoDePreguntas preguntas = new BancoDePreguntas();
-        while(cantidadPreguntas<5){
+        /**en esta linea se encuentra definido el minimo de preguntas que permite registrar*/
+        while(cantidadPreguntas<25){
             System.out.println("Ingrese cantidad total de preguntas a registrar:");
             cantidadPreguntas= Integer.parseInt(scanner.nextLine());
             if(cantidadPreguntas<5){

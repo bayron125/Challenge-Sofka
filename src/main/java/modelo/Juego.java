@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Juego {
     private  Jugador jugador;
-    private BancoDePreguntas categorias;
+    private BancoDePreguntas bp;
     private int acumulado;
 
 
@@ -20,21 +20,23 @@ public class Juego {
     public void iniciar() throws SQLException {
         HistoricoJugadores historico = new HistoricoJugadores();
         int ind=1;
-        if(categorias==null){
-            categorias = PreguntasPorDefecto.generarPreguntas();
+        if(bp ==null){
+            bp = PreguntasPorDefecto.generarPreguntas();
         }
-        preguntas:
-        for(Categoria c: categorias.listar()){
+
+        trivia:
+        for(Categoria c: bp.listar()){
             Ronda ronda = new Ronda(c);
             Pregunta p = ronda.getPregunta();
+            int continuar = 0;
 
-            System.out.println("pregunta " + (ind++) + " por " + ronda.getPuntos() + " puntos");
+            System.out.println("pregunta " + (ind) + " por " + ronda.getPuntos() + " puntos");
             System.out.println(p.getPregunta());
             for(int i=0; i<p.getRespuestas().size(); i++){
-                System.out.println(i +". "+p.getRespuestas().get(i).getRespuesta());
+                System.out.println((i+1) +". "+p.getRespuestas().get(i).getRespuesta());
             }
 
-            if(!(p.getRespuestas().get(registrarDato()).isCorrecta())){
+            if(!(p.getRespuestas().get((registrarDato()-1)).isCorrecta())){
                 acumulado = 0;
                 System.out.println("respuesta incorrecta, su puntaje es de " +acumulado);
                 break;
@@ -42,27 +44,28 @@ public class Juego {
             acumulado+= ronda.getPuntos();
             System.out.println("tu respuesta es correcta");
             System.out.println("Puntos acumulados: " +acumulado);
-            System.out.println("""
+
+            while(continuar != 1 && ind++ < bp.listar().size() ){
+
+                System.out.println("""
                     Desea continuar a la siguiente ronda
                     1. Si
                     2. No""");
-            int continuar = 0;
-            while(continuar != 1){
+
                 continuar=registrarDato();
                 if(continuar==1){
                     continue;
                 }
                 if(continuar == 2){
-                    break preguntas;
+                    break trivia;
                 }
                 System.out.println("valor ingresado invalido");
             }
-
         }
         jugador.setPuntos(acumulado);
         historico.agregar(jugador);
         Ronda.reiniciarPuntos();
-        System.out.println("finaliza quiz");
+        System.out.println("finaliza la trivia, tus datos han sido registrados");
 
     }
 
@@ -72,6 +75,6 @@ public class Juego {
     }
 
     public void configurarJuego(BancoDePreguntas bp){
-        this.categorias = bp;
+        this.bp = bp;
     }
 }
