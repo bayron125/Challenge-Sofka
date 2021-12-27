@@ -13,7 +13,7 @@ public class InyectorPreguntas {
     public static BancoDePreguntas ingresarPreguntas (){
         int cantidadPreguntas=0;
         BancoDePreguntas preguntas = new BancoDePreguntas();
-        /**en esta linea se encuentra definido el minimo de preguntas que permite registrar*/
+        //en esta línea se encuentra definido el mínimo de preguntas que permite registrar*/
         while(cantidadPreguntas<25){
             System.out.println("Ingrese cantidad total de preguntas a registrar:");
             cantidadPreguntas= Integer.parseInt(scanner.nextLine());
@@ -25,8 +25,8 @@ public class InyectorPreguntas {
             Categoria categoria= new Categoria();
             preguntas.agregar(categoria);
             for(int j = 0; j<cantidadPreguntas/5; j++) {
-                System.out.println("Ingrese pregunta numero "
-                        + (j+1) + " de la categoria " + (i + 1));
+                System.out.println("Ingrese pregunta número "
+                        + (j+1) + " de la categoría " + (i + 1));
                 Pregunta pregunta = new Pregunta(scanner.nextLine());
                 categoria.agregarPregunta(pregunta);
                 for (int k = 0; k < 4; k++) {
@@ -46,12 +46,11 @@ public class InyectorPreguntas {
                             respuesta.setCorrecta(false);
                             continue;
                         }
-                        System.out.println("Opcion errada, verifique su respuesta.");
+                        System.out.println("Opción errada, verifique su respuesta.");
                     }
                 }
             }
         }
-
         return preguntas;
     }
 }

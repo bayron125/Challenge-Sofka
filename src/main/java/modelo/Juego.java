@@ -4,7 +4,6 @@ import repositorio.BancoDePreguntas;
 import repositorio.HistoricoJugadores;
 import util.PreguntasPorDefecto;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Juego {
@@ -17,7 +16,7 @@ public class Juego {
         this.jugador = jugador;
     }
 
-    public void iniciar() throws SQLException {
+    public void iniciar() {
         HistoricoJugadores historico = new HistoricoJugadores();
         int ind=1;
         if(bp ==null){
@@ -66,15 +65,19 @@ public class Juego {
         historico.agregar(jugador);
         Ronda.reiniciarPuntos();
         System.out.println("finaliza la trivia, tus datos han sido registrados");
-
     }
 
-    private int registrarDato(){
+    private int registrarDato() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        try{
+            return Integer.parseInt(scanner.nextLine());
+        }catch (NumberFormatException e){
+            System.out.println("Debe indicar la opción con un valor numérico");
+            return registrarDato();
+        }
     }
 
-    public void configurarJuego(BancoDePreguntas bp){
-        this.bp = bp;
-    }
+    public void configurarJuego (BancoDePreguntas bp){
+            this.bp = bp;
+        }
 }

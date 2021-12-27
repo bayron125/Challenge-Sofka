@@ -31,25 +31,28 @@ public class EjemploTrivia {
                    3. Ver historial de juego
                    4. Salir""");
 
-           opcion = Integer.parseInt(scanner.nextLine());
-           if (opcion == 1) {
-               System.out.println("Ingrese nombre de jugador:");
-               juego.setJugador(new Jugador(scanner.nextLine()));
-               juego.iniciar();
-           }
-           if (opcion == 2) {
-               juego.configurarJuego(ingresarPreguntas());
-           }
-           if(opcion ==3){
-               HistoricoJugadores historico = new HistoricoJugadores();
-               System.out.println(historico.listar());
-           }
-           if(opcion == 4){
-               finalizar=true;
-           }
+           try {
 
+               opcion = Integer.parseInt(scanner.nextLine());
+               if (opcion == 1) {
+                   System.out.println("Ingrese nombre de jugador:");
+                   juego.setJugador(new Jugador(scanner.nextLine()));
+                   juego.iniciar();
+               }
+               if (opcion == 2) {
+                   juego.configurarJuego(ingresarPreguntas());
+               }
+               if (opcion == 3) {
+                   HistoricoJugadores historico = new HistoricoJugadores();
+                   System.out.println(historico.listar());
+               }
+               if (opcion == 4) {
+                   finalizar = true;
+               }
+
+           }catch (NumberFormatException e) {
+               System.out.println("Debe indicar la opción con un valor numérico");
+           }
        }
     }
-
-
 }
